@@ -89,10 +89,10 @@ class WeiXin:
         print "get users done"
 
     def get_users_capable(self):
-        url_msgusers = "https://mp.weixin.qq.com/cgi-bin/message?t=message/list&action=&keyword=&offset=0&count=%d&day=7&filterivrmsg=&token=349947752&lang=zh_CN"
-        r_msgusers = self.session.get(url_msgusers % 20)
+        url_msgusers = "https://mp.weixin.qq.com/cgi-bin/message?t=message/list&action=&keyword=&offset=0&count=%d&day=7&filterivrmsg=&token=%s&lang=zh_CN"
+        r_msgusers = self.session.get(url_msgusers % (20,self.token))
         total_msg = int(re.findall(r'total_count : (\d*)', r_msgusers.content)[0])
-        r_allmsgusers = self.session.get(url_msgusers % total_msg)
+        r_allmsgusers = self.session.get(url_msgusers % (total_msg,self.token))
         fakeid = re.findall(r"\"fakeid\":\"(.*?){28}\"", r_allmsgusers.content)
         nick_name = re.findall(r"\"nick_name\":\"(.*?)\"", r_allmsgusers.content)
         date_time = map(int, re.findall(r"\"date_time\":(\d*)", r_allmsgusers.content))
