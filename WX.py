@@ -14,8 +14,8 @@ class WeiXin:
 
     def __init__(self):
         # 公众号登陆账号密码
-        self.unm = "wangzixiao36@outlook.com"
-        self.pwd = "luoshang03060211"
+        self.unm = "your name"
+        self.pwd = "your password"
         self.token = ''
         self.fakeid = ''
         # 字典存储用户与fakeid的关系
